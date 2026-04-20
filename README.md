@@ -1,2 +1,2 @@
-# logic-builder-test-data
-A repository with test data for Logic Builder image
+# logic-builder-test
+A repository with tests for Logic Builder image
