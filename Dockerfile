@@ -1,11 +1,9 @@
-# Declare the LOGIC_BUILDER_IMAGE argument so Docker accepts it from the Makefile
-ARG LOGIC_BUILDER_IMAGE="quay.io/dhanak/logic-builder:latest"
-# Declare the Nexus URL argument so Docker accepts it from the Makefile
-ARG NEXUS_REPO_URL="https://repository.jboss.org/nexus/content/groups/public/"
+ARG LOGIC_BUILDER_IMAGE="quay.io/dhanak/logic-swf-builder:latest"
 
 FROM ${LOGIC_BUILDER_IMAGE} AS builder
 
-ARG QUARKUS_EXTENSIONS="org.kie:kie-addons-quarkus-persistence-jdbc,io.quarkus:quarkus-jdbc-postgresql,io.quarkus:quarkus-agroal"
+ARG NEXUS_REPO_URL="https://baqe-nexus.apps.int.prod-scale-spoke1-aws-us-east-1.itup.redhat.com/nexus/content/groups/public-pnc"
+ARG QUARKUS_EXTENSIONS
 ARG QUARKUS_ADD_EXTENSION_ARGS
 ARG QUARKUS_CREATE_ARGS
 ARG MAVEN_ARGS_APPEND="-Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true"
@@ -31,4 +29,3 @@ USER 185
 ENV AB_JOLOKIA_OFF=""
 ENV JAVA_OPTS="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
 ENV JAVA_APP_JAR="/deployments/quarkus-run.jar"
-
